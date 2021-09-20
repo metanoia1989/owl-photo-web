@@ -1,24 +1,23 @@
-# waveilb-photo-web
+微澜云相册前端
+=============
 
-## Project setup
-```
-yarn install
-```
+使用 vue3 开发
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+启动项目
 
-### Compiles and minifies for production
-```
-yarn build
+```sh
+$ yarn install
+$ yarn serve
+$ yarn build
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+LICENSE
+=======
+
+![](http://www.gnu.org/graphics/gplv3-127x51.png)
+
+Copyright © 2021 Adam Smith
+
+This project is licensed under version 3 of the GNU General Public License.
