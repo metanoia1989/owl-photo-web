@@ -45,7 +45,7 @@ export function parseTime(time, cFormat) {
   const time_str = format.replace(/{([ymdhisa])+}/g, (result, key) => {
     const value = formatObj[key]
     // Note: getDay() returns 0 on Sunday
-    if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value ] }
+    if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value] }
     return value.toString().padStart(2, '0')
   })
   return time_str
@@ -117,7 +117,7 @@ export function param2Obj(url) {
 }
 
 export function color_log(...msg) {
-  console.log('%c 🌹 调试信息 🦄',  'font-size:20px;background-color: #EA7E5C;color:#fff;', ...msg);
+  console.log('%c 🌹 调试信息 🦄', 'font-size:20px;background-color: #EA7E5C;color:#fff;', ...msg);
 }
 
 /**
@@ -130,38 +130,39 @@ export function color_log(...msg) {
 * 
 * @return Formatted string.
 */
-export function humanFileSize(bytes, si=false, dp=1) {
- const thresh = si ? 1000 : 1024;
+export function humanFileSize(bytes, si = false, dp = 1) {
+  const thresh = si ? 1000 : 1024;
 
- if (Math.abs(bytes) < thresh) {
-   return bytes + ' B';
- }
+  if (Math.abs(bytes) < thresh) {
+    return bytes + ' B';
+  }
 
- const units = si 
-   ? ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'] 
-   : ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
- let u = -1;
- const r = 10**dp;
+  const units = si
+    ? ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+    : ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+  let u = -1;
+  const r = 10 ** dp;
 
- do {
-   bytes /= thresh;
-   ++u;
- } while (Math.round(Math.abs(bytes) * r) / r >= thresh && u < units.length - 1);
+  do {
+    bytes /= thresh;
+    ++u;
+  } while (Math.round(Math.abs(bytes) * r) / r >= thresh && u < units.length - 1);
 
- return bytes.toFixed(dp) + ' ' + units[u];
+  return bytes.toFixed(dp) + ' ' + units[u];
 }
 
 /**
  * 图片转base64
  * @param {File} file 
  */
-export function toBase64 (file ) {
+export function toBase64(file) {
   new Promise((resolve, reject) => {
+    var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
     reader.onerror = error => reject(error);
   })
-} 
+}
 
 /**
  * 是否是图片类型 
@@ -175,7 +176,7 @@ export function isImageMime(mime) {
     'gif': 'image/gif',
     'svg': 'image/svg+xml',
     'psd': 'image/photoshop'
-  } 
+  }
   return Object.values(mimes).indexOf(mime) !== -1
 }
 
@@ -223,4 +224,27 @@ export function getDateFromTimestamp(time) {
     return null
   }
   return new Date(times) // 如果date为13位不需要乘1000
+}
+
+/**
+ * 移动端屏幕适配
+ */
+export function screen_fit() {
+  (function (doc, win) {
+    var docEl = doc.documentElement,
+      resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+      recalc = function () {
+        var clientWidth = docEl.clientWidth;
+        if (!clientWidth) return;
+        if (clientWidth >= 640) {
+          docEl.style.fontSize = '100px';
+        } else {
+          docEl.style.fontSize = 100 * (clientWidth / 640) + 'px'; // 640: 可根据设计图来定
+        }
+      };
+
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+  })(document, window);
 }
