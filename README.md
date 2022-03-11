@@ -16,6 +16,10 @@ $ yarn serve
 $ yarn build
 ```
 
+# 图片技术参考
+* 提供薅大厂羊毛的即刻图床 https://jiketuchuang.com/    
+* 图片加密解决的例子 https://github.com/xfgryujk/weibo-img-crypto   
+
 
 
 # LICENSE

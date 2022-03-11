@@ -40,6 +40,10 @@ export const constantRoutes = [
     path: '/',
     component: () => import('@/views/home'),
   },
+  {
+    path: '/start',
+    component: () => import('@/views/splash'),
+  },
   // {
   //   path: '/profile',
   //   component: Layout,
