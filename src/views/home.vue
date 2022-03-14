@@ -1,33 +1,29 @@
 <template>
     <div class="container">
-        
+        <textarea class="text-input" :model="content" cols="30" rows="10"></textarea>
     </div>
 </template>
 
 <script>
 export default {
-
+    data() {
+        return {
+            form: {
+                content: "",
+            }
+        }
+    },
 }
 </script>
 
 <style>
     .container {
-        height: 100vh;
         width: 100vw;
         font-size: 0.14rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    }
+    .text-input {
+        height: 0.6rem;
+        width: 100%;
     }
     
-    .title {
-        margin-bottom: .3rem;
-    }
-    
-    .logo {
-        width: 3rem;
-        height: 3rem;
-        margin-bottom: .3rem;
-    }
 </style>
